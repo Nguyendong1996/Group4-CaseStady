@@ -22,13 +22,19 @@ public class CategoryController {
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Category>> findOne(@PathVariable ("id") Long id){
+        Optional<Category> category = categoryRepository.findById(id);
+        return new ResponseEntity<>(category,HttpStatus.OK);
+    }
+
     @PostMapping("/create")
-    public ResponseEntity<Void> create(@RequestPart Category category){
+    public ResponseEntity<Void> create(@RequestBody Category category){
         categoryRepository.save(category);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @PostMapping("/update/{id}")
-    public ResponseEntity<Void> update(@RequestPart Category category, @PathVariable ("id") Long id){
+    public ResponseEntity<Void> update(@RequestBody Category category, @PathVariable ("id") Long id){
         Optional <Category> category1 = categoryRepository.findById(id);
         if(category1.isPresent()){
             category.setId(category1.get().getId());
