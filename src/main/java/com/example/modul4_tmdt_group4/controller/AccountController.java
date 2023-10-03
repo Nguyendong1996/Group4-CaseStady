@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/Account")
+@RequestMapping("/api/account")
 public class AccountController {
+
+
 
 }
