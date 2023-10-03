@@ -13,7 +13,10 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private double quantity;
+    private boolean cartStatus;
     @ManyToOne
-    private Product product;
+    private Account account;
+    @ManyToOne
+    private CartDetail cartDetail;
+
 }
