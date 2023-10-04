@@ -1,6 +1,5 @@
 package com.example.modul4_tmdt_group4.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,8 +11,8 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    private double quantity;
-    @ManyToOne
-    private Product product;
+   @ManyToOne
+    private Account account;
+
+
 }
