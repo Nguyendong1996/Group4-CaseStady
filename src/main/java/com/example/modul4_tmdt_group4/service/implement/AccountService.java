@@ -1,6 +1,7 @@
 package com.example.modul4_tmdt_group4.service.implement;
 
 import com.example.modul4_tmdt_group4.model.Account;
+import com.example.modul4_tmdt_group4.model.dto.AccountDTO;
 import com.example.modul4_tmdt_group4.repository.IAccountRepository;
 import com.example.modul4_tmdt_group4.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import java.util.Optional;
 public class AccountService implements IAccountService {
     @Autowired
     private IAccountRepository accountRepository;
+
+
 
     @Override
     public Iterable<Account> findAll() {
@@ -40,5 +43,26 @@ public class AccountService implements IAccountService {
     public void delete(Long id) {
         Optional<Account> account = accountRepository.findById(id);
        accountRepository.delete(account.get());
+    }
+
+    @Override
+    public Account findByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
+
+    @Override
+    public AccountDTO toDTO(Account user) {
+        return new AccountDTO(user.getId(), user.getAccount(), user.getRoles());
+    }
+
+    @Override
+    public void save(Account user) {
+        accountRepository.save(user);
+    }
+
+    @Override
+    public AccountDTO findAccountDTOById(Long id) {
+        Optional<Account> accountOptional = accountRepository.findById(id);
+        return accountOptional.map(this::toDTO).orElse(null);
     }
 }
