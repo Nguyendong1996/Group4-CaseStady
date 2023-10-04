@@ -17,6 +17,9 @@ public class Product {
     private String name;
     @NotNull
     private double price;
+    @NotNull
+    @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
+    private int quantity;
     private String description;
     private String image;
     @Transient
