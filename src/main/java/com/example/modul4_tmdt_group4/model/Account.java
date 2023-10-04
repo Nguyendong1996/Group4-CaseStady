@@ -21,6 +21,8 @@ public class Account {
     private String account;
     @NotNull
     private String password;
+    @NotNull
+    private Boolean isActive;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 }
