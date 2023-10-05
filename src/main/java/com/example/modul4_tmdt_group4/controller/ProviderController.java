@@ -38,5 +38,13 @@ public class ProviderController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Provider> delete(@PathVariable Long id){
+        Optional<Provider> optionalProvider = providerService.findById(id);
+        if (optionalProvider.isPresent()){
+            providerService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
