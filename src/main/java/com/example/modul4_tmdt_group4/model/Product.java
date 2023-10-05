@@ -20,7 +20,9 @@ public class Product {
     @NotNull
     @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
     private int quantity;
+
     private String description;
+
     private String image;
     @Transient
     private MultipartFile file;

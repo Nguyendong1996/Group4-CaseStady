@@ -28,13 +28,13 @@ public class ProductController {
     private IProviderRepository providerRepository;
     @Value("${upload.path}")
     private String upload;
-    @RequestMapping("")
+    @GetMapping("")
     public ResponseEntity<Iterable<Product>> showList(){
         Iterable<Product> products = productRepository.findAll();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<Product>> findOne(@PathVariable ("id") Long id){
         Optional<Product> product = productRepository.findById(id);
         return new ResponseEntity<>(product,HttpStatus.OK);
