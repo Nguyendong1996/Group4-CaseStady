@@ -32,6 +32,8 @@ public class Account {
     @Size(max = 120)
     private String password;
 
+    private Boolean isActive;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "account_roles",
             joinColumns = @JoinColumn(name = "account_id"),
@@ -41,10 +43,11 @@ public class Account {
     public Account() {
     }
 
-    public Account(String username, String email, String password) {
+    public Account(String username, String email, String password, Boolean isActive) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.isActive = isActive;
     }
 
     public Long getId() {
@@ -85,5 +88,13 @@ public class Account {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }
