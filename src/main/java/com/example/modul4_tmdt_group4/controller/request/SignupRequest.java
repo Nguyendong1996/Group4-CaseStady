@@ -1,6 +1,5 @@
 package com.example.modul4_tmdt_group4.controller.request;
 
-import java.util.List;
 import java.util.Set;
 
 public class SignupRequest {
