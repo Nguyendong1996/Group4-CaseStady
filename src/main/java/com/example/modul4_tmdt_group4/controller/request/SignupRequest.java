@@ -1,5 +1,9 @@
 package com.example.modul4_tmdt_group4.controller.request;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 public class SignupRequest {
@@ -7,6 +11,17 @@ public class SignupRequest {
     private String username;
     private String password;
     private String email;
+    @NotNull(message = "vui lòng nhập tên")
+    @Size(min = 2)
+    private String name;
+
+    @NotNull(message = "vui lòng nhập địa chỉ")
+    @Size(min = 3)
+    private String address;
+
+    @NotNull(message = "vui lòng nhập số điện thoại")
+    @Size(min = 5)
+    private String phoneNumber;
 
     private Set<String> role;
 
@@ -47,5 +62,29 @@ public class SignupRequest {
 
     public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

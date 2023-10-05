@@ -11,13 +11,13 @@ import com.example.modul4_tmdt_group4.config.sercurity.JwtUtils;
 import com.example.modul4_tmdt_group4.controller.request.LoginRequest;
 import com.example.modul4_tmdt_group4.controller.request.SignupRequest;
 import com.example.modul4_tmdt_group4.model.Role;
-import com.example.modul4_tmdt_group4.model.User;
-import com.example.modul4_tmdt_group4.model.UserDetailsImpl;
+import com.example.modul4_tmdt_group4.model.Account;
+import com.example.modul4_tmdt_group4.model.AccountDetailsImpl;
 import com.example.modul4_tmdt_group4.model.enums.ERole;
 import com.example.modul4_tmdt_group4.repository.RoleRepository;
-import com.example.modul4_tmdt_group4.repository.UserRepository;
+import com.example.modul4_tmdt_group4.repository.AccountRepository;
 import com.example.modul4_tmdt_group4.service.dto.UserInfoDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.modul4_tmdt_group4.service.implement.UserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -36,20 +36,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    @Autowired
-    AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final AccountRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder encoder;
+    private final JwtUtils jwtUtils;
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserService userService;
 
-    @Autowired
-    RoleRepository roleRepository;
+    public AuthController(AuthenticationManager authenticationManager, AccountRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder, JwtUtils jwtUtils, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.encoder = encoder;
+        this.jwtUtils = jwtUtils;
+        this.userService = userService;
+    }
 
-    @Autowired
-    PasswordEncoder encoder;
-
-    @Autowired
-    JwtUtils jwtUtils;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -59,7 +62,7 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        AccountDetailsImpl userDetails = (AccountDetailsImpl) authentication.getPrincipal();
 
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
@@ -74,6 +77,7 @@ public class AuthController {
                         roles));
     }
 
+    // dang ky
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -85,7 +89,7 @@ public class AuthController {
         }
 
         // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
+        Account user = new Account(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
@@ -120,8 +124,8 @@ public class AuthController {
         }
 
         user.setRoles(roles);
-        userRepository.save(user);
-
+        Account savedAccount = userRepository.save(user);
+        userService.saveUserBySingUp(signUpRequest, savedAccount.getId());
         return ResponseEntity.ok("User registered successfully!");
     }
 

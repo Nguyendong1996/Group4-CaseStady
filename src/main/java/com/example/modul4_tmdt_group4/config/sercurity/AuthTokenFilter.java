@@ -1,6 +1,6 @@
 package com.example.modul4_tmdt_group4.config.sercurity;
 
-import com.example.modul4_tmdt_group4.service.implement.UserDetailsServiceImpl;
+import com.example.modul4_tmdt_group4.service.implement.AccountDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private AccountDetailsServiceImpl userDetailsService;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 

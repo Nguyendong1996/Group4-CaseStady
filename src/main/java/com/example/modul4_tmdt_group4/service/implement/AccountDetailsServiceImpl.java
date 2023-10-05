@@ -1,9 +1,9 @@
 package com.example.modul4_tmdt_group4.service.implement;
 
 
-import com.example.modul4_tmdt_group4.model.User;
-import com.example.modul4_tmdt_group4.model.UserDetailsImpl;
-import com.example.modul4_tmdt_group4.repository.UserRepository;
+import com.example.modul4_tmdt_group4.model.Account;
+import com.example.modul4_tmdt_group4.model.AccountDetailsImpl;
+import com.example.modul4_tmdt_group4.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class AccountDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    UserRepository userRepository;
+    AccountRepository userRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
+        Account user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-        return UserDetailsImpl.build(user);
+        return AccountDetailsImpl.build(user);
     }
 }

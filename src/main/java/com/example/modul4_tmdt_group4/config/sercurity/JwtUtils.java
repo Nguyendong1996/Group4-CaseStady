@@ -1,6 +1,6 @@
 package com.example.modul4_tmdt_group4.config.sercurity;
 
-import com.example.modul4_tmdt_group4.model.UserDetailsImpl;
+import com.example.modul4_tmdt_group4.model.AccountDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -38,7 +38,7 @@ public class JwtUtils {
         }
     }
 
-    public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal) {
+    public ResponseCookie generateJwtCookie(AccountDetailsImpl userPrincipal) {
         String jwt = generateTokenFromUsername(userPrincipal.getUsername());
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
         return cookie;

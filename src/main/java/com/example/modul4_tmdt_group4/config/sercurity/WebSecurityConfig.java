@@ -1,6 +1,6 @@
 package com.example.modul4_tmdt_group4.config.sercurity;
 
-import com.example.modul4_tmdt_group4.service.implement.UserDetailsServiceImpl;
+import com.example.modul4_tmdt_group4.service.implement.AccountDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    AccountDetailsServiceImpl userDetailsService;
 
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;

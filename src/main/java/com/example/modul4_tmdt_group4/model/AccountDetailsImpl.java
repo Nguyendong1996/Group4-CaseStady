@@ -10,7 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class UserDetailsImpl implements UserDetails {
+public class AccountDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -24,8 +24,8 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+    public AccountDetailsImpl(Long id, String username, String email, String password,
+                              Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -33,12 +33,12 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build(User user) {
+    public static AccountDetailsImpl build(Account user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
 
-        return new UserDetailsImpl(
+        return new AccountDetailsImpl(
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
@@ -95,7 +95,7 @@ public class UserDetailsImpl implements UserDetails {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        UserDetailsImpl user = (UserDetailsImpl) o;
+        AccountDetailsImpl user = (AccountDetailsImpl) o;
         return Objects.equals(id, user.id);
     }
 }
