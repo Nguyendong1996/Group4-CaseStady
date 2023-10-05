@@ -27,5 +27,16 @@ public class ProviderController {
         return new ResponseEntity<>(provider,HttpStatus.CREATED);
     }
 
+    @PostMapping("/update/{id}")
+    public ResponseEntity<Provider> update(@RequestBody Provider provider, @PathVariable Long id){
+        Optional<Provider> optionalProvider = providerService.findById(id);
+        if (optionalProvider.isPresent()){
+            provider.setId(optionalProvider.get().getId());
+            providerService.update(provider);
+            return new ResponseEntity<>(provider,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 
 }
