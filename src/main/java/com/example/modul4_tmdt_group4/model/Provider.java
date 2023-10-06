@@ -18,4 +18,11 @@ public class Provider {
     private String address;
     @ManyToOne
     private Account account;
+
+    public Provider(Long id) {
+        this.id = id;
+    }
+
+    public Provider() {
+    }
 }

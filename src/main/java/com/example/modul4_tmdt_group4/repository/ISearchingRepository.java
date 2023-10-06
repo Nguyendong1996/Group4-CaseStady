@@ -32,70 +32,69 @@ public interface ISearchingRepository extends JpaRepository<Product,Long> {
                              @Param("name")String name);
     //a,b,c (1)
     @Query(value = "select * from product where price between :number1 and :number2 and category_id=:C_id and provider_id=:P_id", nativeQuery = true)
-    List<Product> searchABC(@Param("number1") int number1,
+    List<Product> search1ABC(@Param("number1") int number1,
                              @Param("number2")int number2,
                              @Param("C_id")Long C_id,
                              @Param("P_id")Long P_id);
 
-    // a,b,d (2)
+    // a,c,d (2)
     @Query(value = "select * from product where price between :number1 and :number2 and provider_id=:P_id and name like :name", nativeQuery = true)
-    List<Product> searchABD(@Param("number1") int number1,
+    List<Product> search2ACD(@Param("number1") int number1,
                              @Param("number2")int number2,
                              @Param("P_id")Long P_id,
                              @Param("name")String name);
-    // a,c,d (3)
+    // a,b,d (3)
     @Query(value = "select * from product where price between :number1 and :number2 and category_id=:C_id and name like :name", nativeQuery = true)
-    List<Product> searchACD(@Param("number1") int number1,
+    List<Product> search3ABD(@Param("number1") int number1,
                              @Param("number2")int number2,
                              @Param("C_id")Long C_id,
                              @Param("name")String name);
     // b,c,d (4)
     @Query(value = "select * from product where category_id=:C_id and provider_id=:P_id and name like :name", nativeQuery = true)
-    List<Product> searchBCD(@Param("C_id")Long C_id,
+    List<Product> search4BCD(@Param("C_id")Long C_id,
                              @Param("P_id")Long P_id,
                              @Param("name")String name);
     // a,b (5)
     @Query(value = "select * from product where price between :number1 and :number2 and category_id=:C_id", nativeQuery = true)
-    List<Product> searchAB(@Param("number1") int number1,
+    List<Product> search5AB(@Param("number1") int number1,
                              @Param("number2")int number2,
                              @Param("C_id")Long C_id);
 
     // a,c (6)
     @Query(value = "select * from product where price between :number1 and :number2 and provider_id=:P_id", nativeQuery = true)
-    List<Product> searchAC(@Param("number1") int number1,
+    List<Product> search6AC(@Param("number1") int number1,
                              @Param("number2")int number2,
-
                              @Param("P_id")Long P_id);
     // a,d (7)
     @Query(value = "select * from product where price between :number1 and :number2 and name like :name", nativeQuery = true)
-    List<Product> searchAD(@Param("number1") int number1,
+    List<Product> search7AD(@Param("number1") int number1,
                              @Param("number2")int number2,
                              @Param("name")String name);
     // b,c (8)
     @Query(value = "select * from product where category_id=:C_id and provider_id=:P_id", nativeQuery = true)
-    List<Product> searchBC(
+    List<Product> search8BC(
                           @Param("C_id")Long C_id,
                           @Param("P_id")Long P_id);
     // b,d (9)
     @Query(value = "select * from product where category_id=:C_id and name like :name", nativeQuery = true)
-    List<Product> searchBD(@Param("C_id")Long C_id,
+    List<Product> search9BD(@Param("C_id")Long C_id,
                           @Param("name")String name);
     // c,d (10)
     @Query(value = "select * from product where provider_id=:P_id and name like :name", nativeQuery = true)
-    List<Product> searchCD(@Param("P_id")Long P_id,
+    List<Product> search10CD(@Param("P_id")Long P_id,
                           @Param("name")String name);
     // a (11)
     @Query(value = "select * from product where price between :number1 and :number2", nativeQuery = true)
-    List<Product> searchA(@Param("number1") int number1,
+    List<Product> search11A(@Param("number1") int number1,
                           @Param("number2")int number2);
     // b (12)
     @Query(value = "select * from product where category_id=:C_id", nativeQuery = true)
-    List<Product> searchB(@Param("C_id")Long C_id);
+    List<Product> search12B(@Param("C_id")Long C_id);
     // c (13)
     @Query(value = "select * from product where provider_id=:P_id", nativeQuery = true)
-    List<Product> searchC(@Param("P_id")Long P_id);
+    List<Product> search13C(@Param("P_id")Long P_id);
     // d (14)
     @Query(value = "select * from product where name like :name", nativeQuery = true)
-    List<Product> searchD(@Param("name")String name);
+    List<Product> search14D(@Param("name")String name);
 
 }

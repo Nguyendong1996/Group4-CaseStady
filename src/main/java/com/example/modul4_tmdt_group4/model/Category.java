@@ -16,5 +16,10 @@ public class Category {
     @NotNull
     private String name;
 
+    public Category(Long id) {
+        this.id = id;
+    }
 
+    public Category() {
+    }
 }
