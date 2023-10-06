@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<H1>Tạo mới sản phẩm</H1>
+<button onclick="createPost()">Create</button>
+<form action="" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td><label>Nhập vào tên sản phẩm</label></td>
+            <td><input type="text" name="name" id="name"></td>
+        </tr>
+        <tr>
+            <td><label>Nhập vào miêu tả sản phẩm</label></td>
+            <td><input type="text" name="description" id="description"></td>
+        </tr>
+        <tr>
+            <td><label>Nhập vào số lượng sản phẩm</label></td>
+            <td><input type="text" name="quantity" id="quantity"></td>
+        </tr>
+        <tr>
+            <td><label>Nhập vào đơn giá</label></td>
+            <td><input type="text" name="price" id="price"></td>
+        </tr>
+        <tr>
+            <td><label>chọn trạng thái (active/inactive)</label></td>
+            <td>
+                <select id="status">
+                    <option value="true">active</option>
+                    <option value="false">inactive</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label>Chọn loại sản phẩm</label></td>
+            <td>
+                <select id="category_id" name="category_id"></select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Chọn loại nhà cung cấp</label></td>
+            <td>
+                <select id="provider_id" name="provider_id"></select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Chọn hình ảnh</label></td>
+            <td><input type="file" id="file" name="file"></td>
+        </tr>
+    </table>
+</form>
+<button onclick="Goback()">go back to home</button>
+
+</body>
+<script src="product.js"></script>
+
+</html>
