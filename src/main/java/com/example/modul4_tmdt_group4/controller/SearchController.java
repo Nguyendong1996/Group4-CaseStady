@@ -1,6 +1,9 @@
 package com.example.modul4_tmdt_group4.controller;
 
+import com.example.modul4_tmdt_group4.model.Category;
 import com.example.modul4_tmdt_group4.model.Product;
+import com.example.modul4_tmdt_group4.model.Provider;
+import com.example.modul4_tmdt_group4.model.Search;
 import com.example.modul4_tmdt_group4.repository.ICategoryRepository;
 import com.example.modul4_tmdt_group4.repository.ISearchingRepository;
 import com.example.modul4_tmdt_group4.service.implement.SearchService;
@@ -22,13 +25,14 @@ public class SearchController {
     @Autowired
     private ISearchingRepository searchingRepository;
 
-    @GetMapping("/{number1}/{number2}/{C_id}/{D_id}/{name}")
-    public ResponseEntity<List<Product>> fullsearch( @PathVariable ("number1") int number1,
-                                                     @PathVariable ("number2") int number2,
-                                                     @PathVariable ("C_id") Long C_id,
-                                                     @PathVariable ("D_id") Long D_id,
-                                                     @PathVariable ("name") String name){
-        List<Product> products = searchingRepository.fullSearch(number1,number2,C_id,D_id,"%"+name+"%");
+    @PostMapping("")
+    public ResponseEntity<List<Product>> fullSearch(@RequestPart("search") Search search){
+        int number1=search.getNumber1();
+        int number2=search.getNumber2();
+        Category category = search.getCategory();
+        Provider provider = search.getProvider();
+        String name = search.getName();
+        List<Product> products = searchingRepository.fullSearch(number1,number2,category.getId(),provider.getId(),"%"+name+"%");
         if(products.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
