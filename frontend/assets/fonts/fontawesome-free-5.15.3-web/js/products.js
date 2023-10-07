@@ -105,7 +105,7 @@ function category(){
             for (let i = 0;i<data.length;i++){
                 content +=`
                 <li class="container__DMSP-item">
-                    <a href="#" class="container__DMSP-name">${data[i].name}</a>
+                    <a href="#" class="container__DMSP-name" onclick="showListProductByCategory(${data[i].id})" id="${data[i].id}">${data[i].name}</a>
                 </li>`
             }
             content +=`</ul>`
@@ -117,7 +117,35 @@ function cartDetail(idProduct){
     localStorage.setItem("idCartDetail",idProduct)
     window.location.href="cart/cart.html"
 }
-
+function showListProductByCategory(id){
+    let search={
+        category:{
+            id:id
+        }
+    }
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "POST",
+        data: JSON.stringify(search),
+        url: "http://localhost:8080/api/search/search12",
+        success: function (data) {
+            let notFound = `<div><H1>Không tìm thấy!!!</H1></div>`
+            if(data.size!==0){
+                let content = showData(data);
+                document.getElementById("home-product").innerHTML = content;
+            } else {
+                document.getElementById("notFound").innerHTML=notFound;
+            }
+        },
+        error: function (err) {
+            console.log(err)
+            // lỗi
+        }
+    })
+}
 function findByName(){
     document.getElementById("home-product").innerHTML = "";
     let findByName = document.getElementById("findName").value;
@@ -229,6 +257,7 @@ function search() {
             },
             type: "POST",
             data: JSON.stringify(search),
+            async: false,
             url: "http://localhost:8080/api/search",
             success: function (data) {
                 let content = showData(data);
