@@ -44,7 +44,7 @@ function displayProduct() {
             for (let i = 0; i < data.length; i++) {
                 content += `
 <div class="grid-column-2">
-    <a href="detial.html" class="home-product-item">
+    <button onclick="cartDetail(${data[i].id})" class="home-product-item">
         <div class="home-product-item__img" style="background-image: url('assets/img/${data[i].image}');"></div>
         <div class="home-product-item__heading">
             <label for="">Sản phẩm: </label><h4 class="home-product-item__name">${data[i].name}</h4><br>
@@ -74,7 +74,7 @@ function displayProduct() {
             </div>
         </div>
         <div class="home-product-item__origin">
-            <span class="home-product-item__brand">Kingston</span>
+           
             <span class="home-product-item__origin-name">${data[i].provider.address}</span>
         </div>
         <div class="home-product-item__favourite">
@@ -85,7 +85,7 @@ function displayProduct() {
             <span class="home-product-item__percent">20%</span>
             <span class="home-product-item__label">Giảm</span>
         </div>
-    </a>
+    </button>
 </div>`
             }
             content +=` </div>
@@ -112,6 +112,10 @@ function category(){
             document.getElementById("category").innerHTML = content;
         }
     })
+}
+function cartDetail(idProduct){
+    localStorage.setItem("idCartDetail",idProduct)
+    window.location.href="cart/cart.html"
 }
 
 function findByName(){
