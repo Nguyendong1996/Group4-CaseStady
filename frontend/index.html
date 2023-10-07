@@ -14,6 +14,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/fonts/fontawesome-free-5.15.3-web/js/login.js"></script>
+    <script src="assets/fonts/fontawesome-free-5.15.3-web/js/modalRegister.js"></script>
+    <script src="assets/fonts/fontawesome-free-5.15.3-web/js/signup.js"></script>
+
 </head>
 <body onload="displayProduct()">
     <div class="app_shopee">
@@ -514,38 +518,50 @@
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input" placeholder="Email của bạn">
+                                <input id="username_register" type="text" class="auth-form__input" placeholder="Tài khoản của bạn">
                             </div>
                             <div class="auth-form__group">
-                                <input type="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                                <input id="password_register" type="text" class="auth-form__input" placeholder="Nhập mật khẩu của bạn">
                             </div>
                             <div class="auth-form__group">
-                                <input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
-                            </div>            
+                                <input id="password_confirm_register" type="text" class="auth-form__input" placeholder="Xác nhận mật khẩu của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input id="name" type="text" class="auth-form__input" placeholder="Tên của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input id="address" type="text" class="auth-form__input" placeholder="Địa chỉ của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input id="numberPhone" type="text" class="auth-form__input" placeholder="Số điện thoại">
+                            </div>
+                            <div class="auth-form__group">
+                                <input id="email" type="text" class="auth-form__input" placeholder="Email của bạn">
+                            </div>
                         </div>
-                        <div class="auth-form__chinhsach">
-                            <p class="auth-form__text">
-                                Bằng việc đăng ký,bạn đã đồng ý với Shoppe về
-                            
-                            <a href="" class="auth-form__link">Điều khoản dịch vụ</a> &
-                            <a href="" class="auth-form__link">Chính sách bảo mật</a>
-                            </p>
-                        </div>
+<!--                        <div class="auth-form__chinhsach">-->
+<!--                            <p class="auth-form__text">-->
+<!--                                Bằng việc đăng ký,bạn đã đồng ý với Shoppe về-->
+<!--                            -->
+<!--                            <a href="" class="auth-form__link">Điều khoản dịch vụ</a> &-->
+<!--                            <a href="" class="auth-form__link">Chính sách bảo mật</a>-->
+<!--                            </p>-->
+<!--                        </div>-->
     
                         <div class="auth-form__control">
-                            <button class="btn btn--trolai">TRỞ LẠI</button>
-                            <button class="btn btn--primary">ĐĂNG KÝ</button>                       
+                            <button id="close-modal-register" class="btn btn--trolai">TRỞ LẠI</button>
+                            <button class="btn btn--primary" onclick="register()">ĐĂNG KÝ</button>
                         </div>
-                        <div class="auth-form__socials">
-                            <a href="" class="auth-form__facebook">
-                                <i class="fab fa-facebook-square"></i>
-                                Kết nối với FACEBOOK                      
-                            </a>
-                            <a href="" class="auth-form__google">
-                                <i class="fab fa-google"></i>
-                                Kết nối với GOOGLE
-                            </a>
-                        </div>
+<!--                        <div class="auth-form__socials">-->
+<!--                            <a href="" class="auth-form__facebook">-->
+<!--                                <i class="fab fa-facebook-square"></i>-->
+<!--                                Kết nối với FACEBOOK                      -->
+<!--                            </a>-->
+<!--                            <a href="" class="auth-form__google">-->
+<!--                                <i class="fab fa-google"></i>-->
+<!--                                Kết nối với GOOGLE-->
+<!--                            </a>-->
+<!--                        </div>-->
                     </div>
                 </div>
         </div>
@@ -563,10 +579,10 @@
             </div>
             <div class="auth-form__form">
                 <div class="auth-form__group">
-                    <input type="text" class="auth-form__input" placeholder="Tài khoản của bạn">
+                    <input type="text" class="auth-form__input" id="username" placeholder="Tài khoản của bạn">
                 </div>
                 <div class="auth-form__group">
-                    <input type="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                    <input type="password" class="auth-form__input" id="password" placeholder="Mật khẩu của bạn">
                 </div>            
             </div>
             <div class="auth-form__chinhsach">
@@ -577,7 +593,7 @@
 
             <div class="auth-form__control">
                 <button id="close-modal" class="btn btn--trolai">TRỞ LẠI</button>
-                <button class="btn btn--primary">ĐĂNG NHẬP</button>                       
+                <button class="btn btn--primary" onclick="login()">ĐĂNG NHẬP</button>
             </div>
             <!--<div class="auth-form__socials">
                 <a href="" class="auth-form__sms">
