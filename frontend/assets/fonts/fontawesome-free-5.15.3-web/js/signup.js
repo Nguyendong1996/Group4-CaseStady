@@ -2,7 +2,7 @@ function register(){
     let username = $("#username_register").val()
     let password = $("#password_register").val()
     let passworfConfirm = $("#password_confirm_register").val()
-    let name = $("#name").val()
+    let name = $("#name_register").val()
     let address = $("#address").val()
     let numberphone =$("#numberPhone").val()
     let email = $("#email").val()
