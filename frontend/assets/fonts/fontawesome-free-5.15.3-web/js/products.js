@@ -119,6 +119,7 @@ function cartDetail(idProduct){
 }
 
 function findByName(){
+    document.getElementById("home-product").innerHTML = "";
     let findByName = document.getElementById("findName").value;
     $.ajax({
         headers: {
@@ -126,17 +127,24 @@ function findByName(){
             'Content-Type': 'application/json'
         },
         type: "POST",
+        async: false,
         data: JSON.stringify(findByName),
         url: "http://localhost:8080/api/search/searchByName",
         success: function (data) {
+            let notFound = `<div><H1>Không tìm thấy!!!</H1></div>`
+            if(data.size!==0){
             let content = showData(data);
             document.getElementById("home-product").innerHTML = content;
+            } else {
+                document.getElementById("notFound").innerHTML=notFound;
+            }
         },
         error: function (err) {
             console.log(err)
             // lỗi
         }
     })
+    // document.getElementById("findName").value="";
 }
 function showData(data) {
     let content =`<div>`
@@ -147,7 +155,7 @@ function showData(data) {
         content += `
 <div class="grid-column-2">
     <a href="detial.html" class="home-product-item">
-        <div class="home-product-item__img" style="background-image: url('assets/img/${data[i].image}');"></div>
+        <div class="home-product-item__img" style="background-image: url('/frontend/assets/img/${data[i].image}');"></div>
          <div class="home-product-item__heading">
             <label for="">Sản phẩm: </label><h4 class="home-product-item__name">${data[i].name}</h4><br>
              
@@ -194,6 +202,7 @@ function showData(data) {
 }
 
 function search() {
+    document.getElementById("home-product").innerHTML = "";
     let number1 = document.getElementById("number1").value;
     let number2 = document.getElementById("number2").value;
     let C_id = document.getElementById("C_id").value;
