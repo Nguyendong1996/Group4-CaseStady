@@ -15,3 +15,22 @@ function closeModal(){
     modal.style.display="none";
 }
 document.getElementById("close-modal").addEventListener("click", closeModal);
+
+// ----------------------------------
+
+
+const RegisterButton = document.getElementById("register-button");
+
+const modalRegister = document.querySelector(".modal--register");
+
+function showModalRegister() {
+    modalRegister.style.display = "block";
+}
+
+RegisterButton.addEventListener("click", showModalRegister);
+
+function closeModalRegister(){
+    modalRegister.style.display="none";
+}
+
+document.getElementById("close-modal-register").addEventListener("click", closeModalRegister);

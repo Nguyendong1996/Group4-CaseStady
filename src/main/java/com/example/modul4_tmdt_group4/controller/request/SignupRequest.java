@@ -23,13 +23,11 @@ public class SignupRequest {
     @Size(min = 5)
     private String phoneNumber;
 
-    private Set<String> role;
 
-    public SignupRequest(String username, String password, String email, Set<String> role) {
+    public SignupRequest(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
     }
 
     public String getUsername() {
@@ -55,15 +53,6 @@ public class SignupRequest {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public Set<String> getRole() {
-        return role;
-    }
-
-    public void setRole(Set<String> role) {
-        this.role = role;
-    }
-
     public String getName() {
         return name;
     }
