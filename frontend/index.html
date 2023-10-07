@@ -125,7 +125,7 @@
                      <div class="header__search">
                          <!-- History -->
                          <div class="header__search-input-wrap">
-                             <input type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm">
+                             <input id="findName" name="findName" type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm">
                              <div class="header__search-history">
                                  <h3 class="header__search-heading">Lịch sử tìm kiếm</h3>
                                  <ul class="header__search-history-list">
@@ -153,7 +153,7 @@
                             </ul>
                         </div>
                         <div class="header__search-btn">
-                            <i class="header__search-icon-btn fas fa-search"></i>
+                            <i onclick="findByName()" class="header__search-icon-btn fas fa-search"></i>
                         </div>
                      </div>
                      <!-- Cart Giỏ Hàng -->
@@ -267,7 +267,39 @@
                         <h4 class="container__DMSP-heading">
                             <i class="container__DMSP-icon fas fa-list-ul"></i>
                             Danh mục sản phẩm</h4>
-                        <div id="category"></div>
+                        <div>
+                            <div id="category"></div>
+                            <div>
+                            <div>
+                                <div class="category-group">
+                                    <h1>Bộ lọc</h1>
+                                    <h2>
+                                        <div class="category-group-title">Khoảng Giá</div>
+                                    </h2>
+                                    <div class="category-group-filter">
+                                        <input id="number1" name="number1" type="number" placeholder="đ TỪ" class="category-group-filter-input">
+                                        <i class="fas fa-arrow-right"></i>
+                                        <input id="number2" name="number2" type="number" placeholder="đ ĐẾN" class="category-group-filter-input">
+                                    </div>
+                                    <h2>List category</h2>
+                                    <h2><select id="C_id" name="C_id"></select><br></h2>
+                                    <div>
+                                        <h2>List Shop</h2>
+                                        <h2><select id="P_id" name="P_id"></select><br></h2>
+                                    </div>
+                                    <div>
+                                        <h2>Tên SP</h2>
+
+                                        <input id="name" name="name" type="text" class="header__search-input" placeholder="Tìm kiếm sản phẩm" style="">
+                                    </div>
+                                    <h1></h1>
+                                    <button onclick="search()" class="btn btn--primary category-group-filter-btn">Áp dụng</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        </div>
                     </div>
                 </div>
 
@@ -310,7 +342,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <div id="display"></div>
                     <!-- DMSP -->
                     <div id="home-product">
 <div></div>
