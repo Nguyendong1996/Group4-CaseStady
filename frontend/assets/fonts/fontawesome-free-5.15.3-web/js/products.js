@@ -293,7 +293,7 @@ function search() {
             url: "http://localhost:8080/api/search/search1",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -325,7 +325,7 @@ function search() {
             url: "http://localhost:8080/api/search/search2",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -357,7 +357,7 @@ function search() {
             url: "http://localhost:8080/api/search/search3",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -389,7 +389,7 @@ function search() {
             url: "http://localhost:8080/api/search/search4",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -421,7 +421,7 @@ function search() {
             url: "http://localhost:8080/api/search/search5",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -453,7 +453,7 @@ function search() {
             url: "http://localhost:8080/api/search/search6",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -485,7 +485,7 @@ function search() {
             url: "http://localhost:8080/api/search/search7",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -517,7 +517,7 @@ function search() {
             url: "http://localhost:8080/api/search/search8",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -549,7 +549,7 @@ function search() {
             url: "http://localhost:8080/api/search/search9",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -581,7 +581,7 @@ function search() {
             url: "http://localhost:8080/api/search/search10",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -613,7 +613,7 @@ function search() {
             url: "http://localhost:8080/api/search/search11",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -645,7 +645,7 @@ function search() {
             url: "http://localhost:8080/api/search/search12",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -677,7 +677,7 @@ function search() {
             url: "http://localhost:8080/api/search/search13",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -709,12 +709,15 @@ function search() {
             url: "http://localhost:8080/api/search/search14",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
                 // lỗi
             }
         })
+    } else{
+        let notfound =`<div><h1>Không tìm thấy, vui lòng chọn đúng!!!</h1> </div>`
+        document.getElementById("home-product").innerHTML = notfound;
     }
 }
