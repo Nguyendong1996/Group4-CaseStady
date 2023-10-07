@@ -546,7 +546,5 @@ function search() {
                 // lỗi
             }
         })
-    } else {
-        alert("Đéo tìm thấy nhé!")
     }
 }

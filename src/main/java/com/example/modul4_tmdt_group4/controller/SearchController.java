@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -24,6 +25,13 @@ public class SearchController {
     ICategoryRepository categoryRepository;
     @Autowired
     private ISearchingRepository searchingRepository;
+
+    @PostMapping("/searchByName")
+    public ResponseEntity<List<Product>> searchByName(@RequestBody Search search){
+        String name = search.getName();
+        List<Product> list = searchingRepository.search14D("%"+name+"%");
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
 
     @PostMapping()
     public ResponseEntity<List<Product>> fullSearch(@RequestBody Search search){
