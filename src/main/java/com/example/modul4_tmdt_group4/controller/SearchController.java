@@ -38,7 +38,6 @@ public class SearchController {
         }
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
-
     @PostMapping("search1")
     public ResponseEntity<List<Product>> search1(@RequestBody Search search){
         int number1=search.getNumber1();

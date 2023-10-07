@@ -31,7 +31,26 @@ $.ajax({
         // lỗi
     }
 });
-
+function findByName(){
+    let findByName = document.getElementById("findName").value;
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "POST",
+        data: JSON.stringify(findByName),
+        url: "http://localhost:8080/api/search/searchByName",
+        success: function (data) {
+            let content = showData(data);
+            document.getElementById("display").innerHTML = content;
+        },
+        error: function (err) {
+            console.log(err)
+            // lỗi
+        }
+    })
+}
 function showData(data) {
     let content = "<table style=\"width: auto\">\n" +
         "    <tr>\n" +
