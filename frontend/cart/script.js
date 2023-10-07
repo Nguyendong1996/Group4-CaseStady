@@ -51,6 +51,7 @@ function cartDetail() {
       <div class = "product-detail">
         <ul>
           <li>DEscription: <span>${partData.description}</span></li>
+          <li>Shop: <span>${partData.provider.name}</span></li>
           
         </ul>
       </div>
