@@ -87,6 +87,8 @@
 .header__qr-link:nth-child(2){
     margin-right:10px;
 }
+
+
 /*-------------------------------------------- Show header QR----------------------------------------------- */
 .header__navbar-item--get-qr:hover .header_qr{
     display: block;
@@ -943,3 +945,5 @@
     color:white;
     font-weight: bold;
 }
+
+
