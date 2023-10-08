@@ -28,13 +28,12 @@ function cartDetail() {
             let partData = data
             console.log(partData)
             console.log(partData.image)
-            let img =`<img src = "/frontend/assets/img/${partData.image}" alt = "shoe image">
+            let img =`<img src = "../../${partData.image}" alt = "shoe image">
 <img src = "/frontend/assets/img/${partData.image}" alt = "shoe image">
 <img src = "/frontend/assets/img/${partData.image}" alt = "shoe image">
 <img src = "/frontend/assets/img/${partData.image}" alt = "shoe image">`
             document.getElementById("img").innerHTML = img;
             let content=`<h2 class = "product-title">${partData.name}</h2>
-      <a href = "#" class = "product-link">new nike store</a>
       <div class = "product-rating">
         <i class = "fas fa-star"></i>
         <i class = "fas fa-star"></i>
@@ -45,13 +44,13 @@ function cartDetail() {
       </div>
 
       <div class = "product-price">
-        <p class = "new-price">New Price: <span>${partData.price} vnd</span></p>
+        <p class = "new-price">Giá bán: <span>${partData.price} USD</span></p>
       </div>
 
       <div class = "product-detail">
         <ul>
-          <li>DEscription: <span>${partData.description}</span></li>
-          <li>Shop: <span>${partData.provider.name}</span></li>
+          <li>Miêu tả: <span>${partData.description}</span></li>
+          <li>Cửa hàng: <span>${partData.provider.name}</span></li>
           
         </ul>
       </div>
@@ -59,28 +58,12 @@ function cartDetail() {
       <div class = "purchase-info">
         <input type = "number" min = "0" value = "1" id="quantity">
         <button type = "button" class = "btn" onclick="addToCart(${partData.id})">
-          Add to Cart <i class = "fas fa-shopping-cart"></i>
+          Thêm vào giỏ hàng <i class = "fas fa-shopping-cart"></i>
         </button>
-        <button type = "button" class = "btn" onclick="homePage()">Compare</button>
-      </div>
+        <button type = "button" class = "btn" onclick="homePage()">Mua thêm</button>
+     
 
-      <div class = "social-links">
-        <p>Share At: </p>
-        <a href = "#">
-          <i class = "fab fa-facebook-f"></i>
-        </a>
-        <a href = "#">
-          <i class = "fab fa-twitter"></i>
-        </a>
-        <a href = "#">
-          <i class = "fab fa-instagram"></i>
-        </a>
-        <a href = "#">
-          <i class = "fab fa-whatsapp"></i>
-        </a>
-        <a href = "#">
-          <i class = "fab fa-pinterest"></i>
-        </a>
+      
       </div>`
             document.getElementById("content").innerHTML=content
         }

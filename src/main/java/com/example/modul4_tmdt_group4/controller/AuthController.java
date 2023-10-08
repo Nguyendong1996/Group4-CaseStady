@@ -64,17 +64,19 @@ public class AuthController {
 
         AccountDetailsImpl userDetails = (AccountDetailsImpl) authentication.getPrincipal();
 
-        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+        String jwtCookie = jwtUtils.generateJwtCookie(userDetails).getValue();
+        ResponseCookie responseCookie = jwtUtils.generateJwtCookie(userDetails);
+
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,responseCookie.toString())
                 .body(new UserInfoDTO(userDetails.getId(),
                         userDetails.getUsername(),
                         userDetails.getEmail(),
-                        roles));
+                        roles,jwtCookie));
     }
 
     // dang ky

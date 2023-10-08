@@ -45,23 +45,25 @@ function displayProduct() {
                 content += `
 <div class="grid-column-2">
     <button onclick="cartDetail(${data[i].id})" class="home-product-item">
-        <div class="home-product-item__img" style="background-image: url('${data[i].image}');"></div>
-        <div class="home-product-item__heading">
-            <h4 class="home-product-item__name">${data[i].name}</h4><br> 
-        </div>
-        <div class="home-product-item__heading">
-        <h4 class="home-product-item__name">Shop:${data[i].provider.name}</h4>
+        <div class="home-product-item__img" style="background-image: url('../${data[i].image}');"></div>
+      
+        
+<!--        --------------------------------------------------------------------------------------------------->
+        <br>
+        <br>
+        <div class="home-product-item__price">
+            <span class="home-product-item__price-current">${data[i].name}</span>
         </div>
         <br>
         <div class="home-product-item__price">
             <span class="home-product-item__price-current">${data[i].price} USD</span>
         </div>
         <div class="home-product-item__action">
-                                            <span class="home-product-item__like">
-                                                <i class="fas fa-heart"></i>
-                                                <
-                                                !-- <i class="far fa-heart--liked"></i> -->
-                                            </span>
+<!--                                            <span class="home-product-item__like">-->
+<!--                                                <i class="fas fa-heart"></i>-->
+<!--                                                <-->
+<!--                                                !&#45;&#45; <i class="far fa-heart&#45;&#45;liked"></i> &ndash;&gt;-->
+<!--                                            </span>-->
             <div class="home-product-item__rating">
                 <i class="fas start-gold fa-star"></i>
                 <i class="fas start-gold fa-star"></i>
@@ -73,10 +75,12 @@ function displayProduct() {
                 404 đã bán
             </div>
         </div>
-        <div class="home-product-item__origin">
-           
+<!--       
+ <div class="home-product-item__origin">
+
             <span class="home-product-item__origin-name">${data[i].provider.address}</span>
-        </div>
+        </div>-->
+        
         <div class="home-product-item__favourite">
             <i class="fas fa-check"></i>
             Yêu thích
@@ -183,7 +187,7 @@ function showData(data) {
         content += `
 <div class="grid-column-2">
     <a href="detial.html" class="home-product-item">
-        <div class="home-product-item__img" style="background-image: url('/frontend/assets/img/${data[i].image}');"></div>
+        <div class="home-product-item__img" style="background-image: url('../../${data[i].image}');"></div>
          <div class="home-product-item__heading">
             <label for="">Sản phẩm: </label><h4 class="home-product-item__name">${data[i].name}</h4><br>
              

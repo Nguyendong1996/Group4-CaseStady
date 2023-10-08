@@ -1,6 +1,9 @@
 function listCart() {
     $.ajax({
         url: "http://localhost:8080/api/cartDetails",
+        xhrFields: {
+            withCredentials: true,
+        },
         type: "GET",
         success: function (data) {
             let totalMoney = 0;
@@ -23,7 +26,7 @@ function listCart() {
             <td data-th="Product">
                 <div class="row">
                     <div class="col-sm-2 hidden-xs"><img
-                            src="assets/img/${data[i].product.image}"
+                            src="../../${data[i].product.image}"
                             alt="Sản phẩm 1" class="img-responsive" width="100">
                     </div>
                     <div class="col-sm-10">
