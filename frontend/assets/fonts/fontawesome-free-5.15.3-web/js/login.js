@@ -16,9 +16,19 @@ function login() {
         data: JSON.stringify(account),
         success: function (data) {
             localStorage.setItem("token", data.token)
-            document.getElementById("username_display").innerText = username;
             window.location.href = "index.html"
             alert("Đăng nhập thành công!")
+        }
+    })
+    $.ajax({
+        headers: {
+            "Content-Type": "application/json"
+        },
+        url: `http://localhost:8080/api/account/${username}`,
+        type: "POST",
+        success: function (data) {
+            localStorage.setItem("accountId", data.id)
+            document.getElementById("username_display").innerText = `${username}`;
         }
     })
 }

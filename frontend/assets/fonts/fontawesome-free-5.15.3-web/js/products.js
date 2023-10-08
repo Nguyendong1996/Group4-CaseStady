@@ -51,9 +51,10 @@ function displayProduct() {
         </div>
         <div class="home-product-item__heading">
         <h4 class="home-product-item__name">Shop:${data[i].provider.name}</h4>
-</div>
+        </div>
+        <br>
         <div class="home-product-item__price">
-            <span class="home-product-item__price-current">${data[i].price}</span>
+            <span class="home-product-item__price-current">${data[i].price} USD</span>
         </div>
         <div class="home-product-item__action">
                                             <span class="home-product-item__like">
