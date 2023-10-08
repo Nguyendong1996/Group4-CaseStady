@@ -16,7 +16,9 @@ function login() {
         data: JSON.stringify(account),
         success: function (data) {
             localStorage.setItem("token", data.token)
+            document.getElementById("username_display").innerText = username;
             window.location.href = "index.html"
+            alert("Đăng nhập thành công!")
         }
     })
 }
