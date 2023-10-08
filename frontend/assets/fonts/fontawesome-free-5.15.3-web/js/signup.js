@@ -7,17 +7,20 @@ function register(){
     let numberphone =$("#numberPhone").val()
     let email = $("#email").val()
 
-    let account = {
-        username: username,
-        password: password,
-        name : name,
-        address : address,
-        phoneNumber : numberphone,
-        email : email
-    }
 
 
-    if(username === null || password === null || name === null || address === null || numberphone === null || email === null){
+
+    if(username == "" || password == "" || name == "" || address == "" || numberphone == "" || email == ""){
+        alert("Yêu cầu nhập đủ các trường")
+    }else{
+        let account = {
+            username: username,
+            password: password,
+            name : name,
+            address : address,
+            phoneNumber : numberphone,
+            email : email
+        }
         if(password === passworfConfirm){
             $.ajax({
                 headers: {
@@ -28,14 +31,13 @@ function register(){
                 data: JSON.stringify(account),
                 success: function (data) {
                     //localStorage.setItem("token", data.token)
+                    alert("Đăng ký thành công!")
                     window.location.href = "index.html"
                 }
             })
         }else{
             alert("Xác nhận mật khẩu chưa đúng");
         }
-    }else{
-        alert("Yêu cầu nhập đủ các trường")
     }
 
 

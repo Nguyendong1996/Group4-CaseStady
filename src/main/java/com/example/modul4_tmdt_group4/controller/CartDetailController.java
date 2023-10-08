@@ -5,6 +5,7 @@ import com.example.modul4_tmdt_group4.service.ICartDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class CartDetailController {
     @Autowired
     ICartDetailService cartDetailService;
     @GetMapping
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Iterable<CartDetail>> showList(){
         return new ResponseEntity<>(cartDetailService.findAll(), HttpStatus.OK);
     }

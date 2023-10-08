@@ -17,6 +17,8 @@
     <script src="assets/fonts/fontawesome-free-5.15.3-web/js/login.js"></script>
     <script src="assets/fonts/fontawesome-free-5.15.3-web/js/modalRegister.js"></script>
     <script src="assets/fonts/fontawesome-free-5.15.3-web/js/signup.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <script src="assets/fonts/fontawesome-free-5.15.3-web/js/signout.js"></script>
 
 </head>
 <body onload="displayProduct()">
@@ -121,6 +123,7 @@
                         </li>
                         <li id="register-button" class="header__navbar-item header__navbar-item--strong">Đăng Ký</li>
                         <li id="login-button" class="header__navbar-item header__navbar-item--strong">Đăng nhập</li>
+                        <li id="logout-button" class="header__navbar-item header__navbar-item--strong" onclick="logout()">Đăng Xuát</li>
                     </ul>
                 </nav>
                 <!-- --------------------------------------------End Header Navbar -->
@@ -447,10 +450,10 @@
                                 <input id="username_register" type="text" class="auth-form__input" placeholder="Tài khoản của bạn">
                             </div>
                             <div class="auth-form__group">
-                                <input id="password_register" type="text" class="auth-form__input" placeholder="Nhập mật khẩu của bạn">
+                                <input id="password_register" type="password" class="auth-form__input" placeholder="Nhập mật khẩu của bạn">
                             </div>
                             <div class="auth-form__group">
-                                <input id="password_confirm_register" type="text" class="auth-form__input" placeholder="Xác nhận mật khẩu của bạn">
+                                <input id="password_confirm_register" type="password" class="auth-form__input" placeholder="Xác nhận mật khẩu của bạn">
                             </div>
                             <div class="auth-form__group">
                                 <input id="name_register" type="text" class="auth-form__input" placeholder="Tên của bạn">

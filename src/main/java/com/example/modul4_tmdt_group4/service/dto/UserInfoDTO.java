@@ -10,11 +10,14 @@ public class UserInfoDTO {
 
     private List<String> role;
 
-    public UserInfoDTO(Long id, String username, String email, List<String> role) {
+    private String jwt;
+
+    public UserInfoDTO(Long id, String username, String email, List<String> role, String jwt) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.role = role;
+        this.jwt = jwt;
     }
 
     public Long getId() {
@@ -47,5 +50,13 @@ public class UserInfoDTO {
 
     public void setRole(List<String> role) {
         this.role = role;
+    }
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +29,7 @@ public class ProductController {
     private IProviderRepository providerRepository;
     @Value("${upload.path}")
     private String upload;
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<Iterable<Product>> showList(){
         Iterable<Product> products = productRepository.findAll();
         return new ResponseEntity<>(products, HttpStatus.OK);

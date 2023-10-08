@@ -44,6 +44,9 @@ html{
     padding-right: 12px;
     width: 83.3334%;
 }
+.home-product-item__name{
+    font-size: larger;
+}
 /* ---------------------------------------Keyframes animation----------------------------------------------------- */
 @keyframes fadeIn{
     from{

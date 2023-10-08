@@ -16,7 +16,7 @@ public class CategoryController {
     @Autowired
     ICategoryRepository categoryRepository;
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity< Iterable<Category>> showList(){
         Iterable<Category> categories = categoryRepository.findAll();
         return new ResponseEntity<>(categories, HttpStatus.OK);
