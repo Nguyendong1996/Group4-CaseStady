@@ -16,22 +16,28 @@ function register(){
         email : email
     }
 
-    if(password === passworfConfirm){
-        $.ajax({
-            headers: {
-                "Content-Type": "application/json"
-            },
-            url: "http://localhost:8080/api/auth/signup",
-            type: "POST",
-            data: JSON.stringify(account),
-            success: function (data) {
-                //localStorage.setItem("token", data.token)
-                window.location.href = "index.html"
-            }
-        })
+
+    if(username === null || password === null || name === null || address === null || numberphone === null || email === null){
+        if(password === passworfConfirm){
+            $.ajax({
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                url: "http://localhost:8080/api/auth/signup",
+                type: "POST",
+                data: JSON.stringify(account),
+                success: function (data) {
+                    //localStorage.setItem("token", data.token)
+                    window.location.href = "index.html"
+                }
+            })
+        }else{
+            alert("Xác nhận mật khẩu chưa đúng");
+        }
     }else{
-        alert("Xác nhận mật khẩu chưa đúng");
+        alert("Yêu cầu nhập đủ các trường")
     }
+
 
 
 }

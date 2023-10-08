@@ -45,16 +45,16 @@ function displayProduct() {
                 content += `
 <div class="grid-column-2">
     <button onclick="cartDetail(${data[i].id})" class="home-product-item">
-        <div class="home-product-item__img" style="background-image: url('assets/img/${data[i].image}');"></div>
+        <div class="home-product-item__img" style="background-image: url('${data[i].image}');"></div>
         <div class="home-product-item__heading">
-            <label for="">Sản phẩm: </label><h4 class="home-product-item__name">${data[i].name}</h4><br>
-             
+            <h4 class="home-product-item__name">${data[i].name}</h4><br> 
         </div>
         <div class="home-product-item__heading">
-        <label>Shop: </label><h4 class="home-product-item__name">${data[i].provider.name}</h4>
-</div>
+        <h4 class="home-product-item__name">Shop:${data[i].provider.name}</h4>
+        </div>
+        <br>
         <div class="home-product-item__price">
-            <span class="home-product-item__price-current">${data[i].price}</span>
+            <span class="home-product-item__price-current">${data[i].price} USD</span>
         </div>
         <div class="home-product-item__action">
                                             <span class="home-product-item__like">
