@@ -37,4 +37,9 @@ public class BillService implements IBillService {
     public void delete(Long id) {
         billRepository.deleteById(id);
     }
+    @Override
+    public Long createBill(Bill bill) {
+        Bill createdBill = billRepository.save(bill);
+        return createdBill.getId();
+}
 }

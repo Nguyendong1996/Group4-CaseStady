@@ -19,7 +19,7 @@ public class BillController {
     }
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Bill bill){
-        billService.create(bill);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        Long idBill =billService.createBill(bill);
+        return new ResponseEntity<>(idBill,HttpStatus.CREATED);
     }
 }

@@ -51,9 +51,9 @@ function listCart() {
                 hàng</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
-            <td class="hidden-xs text-center"><strong>Tổng tiền : ${totalMoney} đ</strong>
+            <td class="hidden-xs text-center" id="totalMoney" value="${totalMoney}"><strong>Tổng tiền : ${totalMoney} đ</strong>
             </td>
-            <td><button onclick="thanhtoan()" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></button>
+            <td><button onclick="totalMoney()" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></button>
             </td>
         </tr>
         </tfoot>
@@ -63,8 +63,7 @@ function listCart() {
     })
 }
 
-function thanhtoan() {
-}
+
 
 function updateCart(i,id,idProduct) {
     let cartDetail;
@@ -106,6 +105,85 @@ function deleteCart(id){
         type: "DELETE",
         success: function () {
             listCart()
+        }
+    })
+
+}
+function totalMoney(){
+    let totalMoney =$("#totalMoney").attr("value");
+    let currentDate = new Date();
+    let year = currentDate.getFullYear();
+    let month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    let day = ('0' + currentDate.getDate()).slice(-2);
+    let hours = ('0' + currentDate.getHours()).slice(-2);
+    let minutes = ('0' + currentDate.getMinutes()).slice(-2);
+    let seconds = ('0' + currentDate.getSeconds()).slice(-2);
+
+    let formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    let bill={
+        totalPrice : totalMoney,
+        localDateTime:currentDate,
+        cart:{
+            id:1
+        }
+    }
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: `http://localhost:8080/api/bills`,
+        type: "POST",
+        data: JSON.stringify(bill),
+        success: function (data) {
+            let idBill = data
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: "http://localhost:8080/api/cartDetails",
+                type: "GET",
+                success: function (data) {
+                    for (let i = 0;i<data.length;i++){
+                        let billDetail ={
+                            product: {
+                                id:data[i].product.id
+                            },
+                            quantity:data[i].quantity,
+                            billPrice:data[i].product.price,
+                            bill:{
+                                id: idBill,
+                            }
+
+                        }
+                        $.ajax({
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            url: `http://localhost:8080/api/billDetails`,
+                            type: "POST",
+                            data: JSON.stringify(billDetail),
+                            success: function () {
+                            }
+                        })
+                        $.ajax({
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            url: `http://localhost:8080/api/cartDetails/${data[i].id}`,
+                            type: "DELETE",
+                            success: function () {
+                            }
+                        })
+
+                    }
+                }
+
+            })
+            alert("thanh toan thanh cong")
         }
     })
 
