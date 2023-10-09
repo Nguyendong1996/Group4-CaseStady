@@ -89,6 +89,7 @@ function addToCart(idProduct) {
     let cartDetail1;
     let index;
     $.ajax({
+
         url: "http://localhost:8080/api/cartDetails",
         type: "GET",
         success: function (data) {
