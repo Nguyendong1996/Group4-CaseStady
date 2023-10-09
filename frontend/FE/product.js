@@ -6,7 +6,7 @@ $.ajax({
     },
     url: "http://localhost:8080/api/product",
     success: function (data) {
-        let content = "<table style=\"width: auto\">\n" +
+        let content = "<table class=\"table table-striped\">\n" +
             "    <tr>\n" +
             "      <th>Stt</th>\n" +
             "      <th>Tên sản phẩm </th>\n" +
@@ -27,9 +27,9 @@ $.ajax({
                         <td>${data[i].price}</td>
                         <td>${data[i].category.name}</td>
                         <td>${data[i].provider.name}</td>
-                        <td><img style="width: 50px; height: 50px" src="/src/main/resources/static/image/${data[i].image}"></td>
-                        <td><button onclick="updateProduct(${data[i].id})"> update</button></td>
-                        <td><button onclick="deleteProduct(${data[i].id})"> delete</button></td>
+                        <td><img style="width: 50px; height: 50px" src="/frontend/assets/img/${data[i].image}"></td>
+                        <td><button onclick="updateProduct(${data[i].id})" class="btn btn-primary"> update</button></td>
+                        <td><button onclick="deleteProduct(${data[i].id})" class="btn btn-danger"> delete</button></td>
                     </tr>`
         }
         document.getElementById("display").innerHTML = content;

@@ -45,13 +45,13 @@ function cartDetail() {
       </div>
 
       <div class = "product-price">
-        <p class = "new-price">New Price: <span>${partData.price} vnd</span></p>
+        <p class = "new-price">Giá : <span>${partData.price} vnd</span></p>
       </div>
 
       <div class = "product-detail">
         <ul>
-          <li>DEscription: <span>${partData.description}</span></li>
-          <li>Shop: <span>${partData.provider.name}</span></li>
+          <li>Mô tả: <span>${partData.description}</span></li>
+          <li>Cửa hàng : <span>${partData.provider.name}</span></li>
           
         </ul>
       </div>
@@ -59,13 +59,13 @@ function cartDetail() {
       <div class = "purchase-info">
         <input type = "number" min = "0" value = "1" id="quantity">
         <button type = "button" class = "btn" onclick="addToCart(${partData.id})">
-          Add to Cart <i class = "fas fa-shopping-cart"></i>
+          Thêm vào giỏ hàng <i class = "fas fa-shopping-cart"></i>
         </button>
-        <button type = "button" class = "btn" onclick="homePage()">Compare</button>
+        <button type = "button" class = "btn" onclick="homePage()">Quay lại</button>
       </div>
 
       <div class = "social-links">
-        <p>Share At: </p>
+        <p>Chia sẻ : </p>
         <a href = "#">
           <i class = "fab fa-facebook-f"></i>
         </a>

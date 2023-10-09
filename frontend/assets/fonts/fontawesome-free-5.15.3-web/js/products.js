@@ -54,13 +54,13 @@ function displayProduct() {
         <label>Shop: </label><h4 class="home-product-item__name">${data[i].provider.name}</h4>
 </div>
         <div class="home-product-item__price">
-            <span class="home-product-item__price-current">${data[i].price}</span>
+            <span class="home-product-item__price-current">${data[i].price}  VND</span>
         </div>
         <div class="home-product-item__action">
                                             <span class="home-product-item__like">
                                                 <i class="fas fa-heart"></i>
-                                                <
-                                                !-- <i class="far fa-heart--liked"></i> -->
+                                                
+                                                <i class="far fa-heart--liked"></i> 
                                             </span>
             <div class="home-product-item__rating">
                 <i class="fas start-gold fa-star"></i>
@@ -70,7 +70,7 @@ function displayProduct() {
                 <i class="fas fa-star"></i>
             </div>
             <div class="home-product-item__sold">
-                404 đã bán
+                0 đã bán
             </div>
         </div>
 <div class="home-product-item__origin">
@@ -182,9 +182,9 @@ function showData(data) {
     for (let i = 0; i < data.length; i++) {
         content += `
 <div class="grid-column-2">
-    <a href="detial.html" class="home-product-item">
-        <div class="home-product-item__img" style="background-image: url('/frontend/assets/img/${data[i].image}');"></div>
-         <div class="home-product-item__heading">
+    <button onclick="cartDetail(${data[i].id})" class="home-product-item">
+        <div class="home-product-item__img" style="background-image: url('assets/img/${data[i].image}');"></div>
+        <div class="home-product-item__heading">
             <label for="">Sản phẩm: </label><h4 class="home-product-item__name">${data[i].name}</h4><br>
              
         </div>
@@ -197,8 +197,8 @@ function showData(data) {
         <div class="home-product-item__action">
                                             <span class="home-product-item__like">
                                                 <i class="fas fa-heart"></i>
-                                                <
-                                                !-- <i class="far fa-heart--liked"></i> -->
+                                                
+                                               <i class="far fa-heart--liked"></i> 
                                             </span>
             <div class="home-product-item__rating">
                 <i class="fas start-gold fa-star"></i>
@@ -208,11 +208,11 @@ function showData(data) {
                 <i class="fas fa-star"></i>
             </div>
             <div class="home-product-item__sold">
-                404 đã bán
+                0 đã bán
             </div>
         </div>
-        <div class="home-product-item__origin">
-            <span class="home-product-item__brand">Kingston</span>
+<div class="home-product-item__origin">
+           
             <span class="home-product-item__origin-name">${data[i].provider.address}</span>
         </div>
         <div class="home-product-item__favourite">
@@ -223,7 +223,7 @@ function showData(data) {
             <span class="home-product-item__percent">20%</span>
             <span class="home-product-item__label">Giảm</span>
         </div>
-    </a>
+    </button>
 </div>`
     }
     return content;
@@ -719,4 +719,7 @@ function search() {
         let notfound =`<div><h1>Không tìm thấy, vui lòng chọn đúng!!!</h1> </div>`
         document.getElementById("home-product").innerHTML = notfound;
     }
+}
+function kenhnguoiban(){
+    window.location.href="http://localhost:63342/Modul4_TMDT_Group4/frontend/FE/product.html"
 }

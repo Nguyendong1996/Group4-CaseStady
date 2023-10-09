@@ -41,6 +41,7 @@ function listCart() {
                 </button>
             </td>
         </tr> 
+    
         </form>
 `
             }
@@ -56,6 +57,9 @@ function listCart() {
             <td><button onclick="totalMoney()" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></button>
             </td>
         </tr>
+        <tr>
+        <td><button class="btn btn-success btn-block" onclick="lichsu()">Lịch sử mua hàng</button></td>
+</tr>
         </tfoot>
     </table>`
             document.getElementById("listCart").innerHTML = content
@@ -180,6 +184,7 @@ function totalMoney(){
                         })
 
                     }
+                    listCart()
                 }
 
             })
@@ -187,4 +192,32 @@ function totalMoney(){
         }
     })
 
+}
+function lichsu(){
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: `http://localhost:8080/api/bills`,
+        type: "GET",
+        success: function (data) {
+            let content =`<table>
+<tr>
+<th>idBil</th>
+<th>Thoi gian mua hang</th>
+<th>tong tien</th>
+</tr>`
+            for (let i=0;i<data.length;i++){
+                content +=`<tr>
+<td>data[i].id</td>
+<td>data[i].localDateTime</td>
+<td>data[i].totalPrice</td> 
+</tr>`
+            }
+            content +=`</table>`
+            document.getElementById("listBill").innerHTML = content;
+        }
+
+})
 }
