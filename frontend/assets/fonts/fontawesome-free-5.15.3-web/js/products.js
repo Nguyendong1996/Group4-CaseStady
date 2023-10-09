@@ -38,7 +38,7 @@ function displayProduct() {
         type: "GET",
         success: function (data) {
             let content =`<div>`
-                content+=
+            content+=
                 ` <div class="grid">
                             <div class="grid__row">`
             for (let i = 0; i < data.length; i++) {
@@ -73,7 +73,7 @@ function displayProduct() {
                 404 đã bán
             </div>
         </div>
-        <div class="home-product-item__origin">
+<div class="home-product-item__origin">
            
             <span class="home-product-item__origin-name">${data[i].provider.address}</span>
         </div>
@@ -101,11 +101,11 @@ function category(){
         url: "http://localhost:8080/api/category",
         type: "GET",
         success: function (data) {
-        let content =`<ul class="container__DMSP-menu">`
+            let content =`<ul class="container__DMSP-menu">`
             for (let i = 0;i<data.length;i++){
                 content +=`
                 <li class="container__DMSP-item">
-                    <a href="#" class="container__DMSP-name">${data[i].name}</a>
+                    <a href="#" class="container__DMSP-name" onclick="showListProductByCategory(${data[i].id})" id="${data[i].id}">${data[i].name}</a>
                 </li>`
             }
             content +=`</ul>`
@@ -117,8 +117,37 @@ function cartDetail(idProduct){
     localStorage.setItem("idCartDetail",idProduct)
     window.location.href="cart/cart.html"
 }
-
+function showListProductByCategory(id){
+    let search={
+        category:{
+            id:id
+        }
+    }
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "POST",
+        data: JSON.stringify(search),
+        url: "http://localhost:8080/api/search/search12",
+        success: function (data) {
+            let notFound = `<div><H1>Không tìm thấy!!!</H1></div>`
+            if(data.size!==0){
+                let content = showData(data);
+                document.getElementById("home-product").innerHTML = content;
+            } else {
+                document.getElementById("notFound").innerHTML=notFound;
+            }
+        },
+        error: function (err) {
+            console.log(err)
+            // lỗi
+        }
+    })
+}
 function findByName(){
+    document.getElementById("home-product").innerHTML = "";
     let findByName = document.getElementById("findName").value;
     $.ajax({
         headers: {
@@ -126,17 +155,24 @@ function findByName(){
             'Content-Type': 'application/json'
         },
         type: "POST",
+        async: false,
         data: JSON.stringify(findByName),
         url: "http://localhost:8080/api/search/searchByName",
         success: function (data) {
-            let content = showData(data);
-            document.getElementById("home-product").innerHTML = content;
+            let notFound = `<div><H1>Không tìm thấy!!!</H1></div>`
+            if(data.size!==0){
+                let content = showData(data);
+                document.getElementById("home-product").innerHTML = content;
+            } else {
+                document.getElementById("notFound").innerHTML=notFound;
+            }
         },
         error: function (err) {
             console.log(err)
             // lỗi
         }
     })
+    // document.getElementById("findName").value="";
 }
 function showData(data) {
     let content =`<div>`
@@ -147,7 +183,7 @@ function showData(data) {
         content += `
 <div class="grid-column-2">
     <a href="detial.html" class="home-product-item">
-        <div class="home-product-item__img" style="background-image: url('assets/img/${data[i].image}');"></div>
+        <div class="home-product-item__img" style="background-image: url('/frontend/assets/img/${data[i].image}');"></div>
          <div class="home-product-item__heading">
             <label for="">Sản phẩm: </label><h4 class="home-product-item__name">${data[i].name}</h4><br>
              
@@ -194,12 +230,12 @@ function showData(data) {
 }
 
 function search() {
+    document.getElementById("home-product").innerHTML = "";
     let number1 = document.getElementById("number1").value;
     let number2 = document.getElementById("number2").value;
     let C_id = document.getElementById("C_id").value;
     let P_id = document.getElementById("P_id").value;
     let name = document.getElementById("name").value;
-
     if (number1 !== "" && number2 !== "" && C_id !== "" &&  P_id !== "" && name !=="") {
         let search = {
             number1: number1,
@@ -220,6 +256,7 @@ function search() {
             },
             type: "POST",
             data: JSON.stringify(search),
+            async: false,
             url: "http://localhost:8080/api/search",
             success: function (data) {
                 let content = showData(data);
@@ -255,7 +292,7 @@ function search() {
             url: "http://localhost:8080/api/search/search1",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -287,7 +324,7 @@ function search() {
             url: "http://localhost:8080/api/search/search2",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -319,7 +356,7 @@ function search() {
             url: "http://localhost:8080/api/search/search3",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -351,7 +388,7 @@ function search() {
             url: "http://localhost:8080/api/search/search4",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -383,7 +420,7 @@ function search() {
             url: "http://localhost:8080/api/search/search5",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -415,7 +452,7 @@ function search() {
             url: "http://localhost:8080/api/search/search6",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -447,7 +484,7 @@ function search() {
             url: "http://localhost:8080/api/search/search7",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -479,7 +516,7 @@ function search() {
             url: "http://localhost:8080/api/search/search8",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -511,7 +548,7 @@ function search() {
             url: "http://localhost:8080/api/search/search9",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -543,7 +580,7 @@ function search() {
             url: "http://localhost:8080/api/search/search10",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -575,7 +612,7 @@ function search() {
             url: "http://localhost:8080/api/search/search11",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -607,7 +644,7 @@ function search() {
             url: "http://localhost:8080/api/search/search12",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -639,7 +676,7 @@ function search() {
             url: "http://localhost:8080/api/search/search13",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
@@ -671,12 +708,15 @@ function search() {
             url: "http://localhost:8080/api/search/search14",
             success: function (data) {
                 let content = showData(data);
-                document.getElementById("display").innerHTML = content;
+                document.getElementById("home-product").innerHTML = content;
             },
             error: function (err) {
                 console.log(err)
                 // lỗi
             }
         })
+    } else{
+        let notfound =`<div><h1>Không tìm thấy, vui lòng chọn đúng!!!</h1> </div>`
+        document.getElementById("home-product").innerHTML = notfound;
     }
 }
